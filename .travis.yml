@@ -5,6 +5,6 @@ before_install:
   - sudo apt-get install -y check
   - sudo pip install cpp-coveralls
 script:
-  - ./autogen.sh && ./configure && make check
+  - ./autogen.sh && ./configure --enable-gcov && make check
 after_success:
-- coveralls --gcov-options '\-lp' -r src -b .
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
